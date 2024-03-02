@@ -1,12 +1,15 @@
 package org.example;
 
 import java.util.HashMap;
-import java.util.Set;
+
 
 public class Bank {
-    private HashMap<Integer, BankAccount> accounts = new HashMap<>();
-    private double rate = 0.1;
-    private int nextacct = 0;
+    private HashMap<Integer, BankAccount> accounts;
+    private int nextacct;
+    public Bank(HashMap<Integer, BankAccount> accounts, int n) {
+        this.accounts = accounts;
+        nextacct = n;
+    }
     public int newAccount(boolean isForeign){
         int acctnum = nextacct++;
         BankAccount ba = new BankAccount(acctnum);
@@ -20,13 +23,12 @@ public class Bank {
     }
     public void deposit(int acctNum, int amt){
         BankAccount ba = accounts.get(acctNum);
-        int balance = ba.getBalance();
-        ba.setBalance(balance + amt);
+        ba.deposit(amt);
     }
     public boolean authorizeLoan(int acctNum, int loanAmt){
         BankAccount ba = accounts.get(acctNum);
-        int balance = ba.getBalance();
-        return balance >= loanAmt / 2;
+
+        return ba.hasEnoughCollateral(loanAmt);
     }
     public void setForeign(int acctnum, boolean isForeign){
         BankAccount ba = accounts.get(acctnum);
@@ -36,16 +38,13 @@ public class Bank {
     public String toString(){
         String result = "The bank has " + accounts.size() + " acounts.";
         for(BankAccount ba: accounts.values()){
-            result += "\n\tBank account " + ba.getAccnum() + ": balance = " + ba.getBalance()
-             + " is " + (ba.isForeign() ? "foreign" : "domestic");
+            result += "\n\t" + ba.toString();
         }
         return result;
     }
     public void addInterest(){
         for(BankAccount ba: accounts.values()){
-            int balance = ba.getBalance();
-            balance += (int) (balance * rate);
-            ba.setBalance(balance);
+            ba.addInterest();
         }
     }
 }

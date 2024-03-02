@@ -3,9 +3,13 @@ package org.example;
 import java.util.Scanner;
 public class BankClient {
     private int current = -1;
-    private Scanner scanner = new Scanner(System.in);
+    private Scanner scanner;
     private boolean done = false;
-    private Bank bank = new Bank();
+    private Bank bank;
+    public BankClient(Scanner scanner, Bank bank){
+        this.scanner = scanner;
+        this.bank = bank;
+    }
     public void run(){
         scanner = new Scanner(System.in);
         while(!done){
@@ -24,7 +28,7 @@ public class BankClient {
         else if(cmd == 4) authorizeLoan();
         else if(cmd == 5) showAll();
         else if(cmd == 6) addInterest();
-        else if(cmd == 7) isForeign();
+        else if(cmd == 7) setForeign();
         else
             System.out.println("Illegal command");
     }
@@ -42,6 +46,9 @@ public class BankClient {
         System.out.println("Enter 1 for foreign, 2 for domestic: ");
         int val = scanner.nextInt();
         return (val == 1);
+    }
+    private void setForeign(){
+        bank.setForeign(current, requestForeign());
     }
     private void select(){
         System.out.print("Enter account#: ");
@@ -70,7 +77,5 @@ public class BankClient {
     private void addInterest(){
         bank.addInterest();
     }
-    private void isForeign(){
-        BankAccount ba;
-    }
+
 }
