@@ -4,18 +4,23 @@ import java.util.HashMap;
 
 
 public class Bank {
-    private HashMap<Integer, BankAccount> accounts;
-    private int nextacct;
+    private final HashMap<Integer, BankAccount> accounts;
+    private int nextAcc;
     public Bank(HashMap<Integer, BankAccount> accounts, int n) {
         this.accounts = accounts;
-        nextacct = n;
+        nextAcc = n;
     }
-    public int newAccount(boolean isForeign){
-        int acctnum = nextacct++;
-        BankAccount ba = new BankAccount(acctnum);
+    public int newAccount(int type, boolean isForeign){
+        int acctNum = nextAcc++;
+        BankAccount ba;
+        if (type == 1){
+            ba = new SavingAccount(acctNum);
+        }else {
+            ba = new CheckingAccount(acctNum);
+        }
         ba.setForeign(isForeign);
-        accounts.put(acctnum, ba);
-        return acctnum;
+        accounts.put(acctNum, ba);
+        return acctNum;
     }
     public int getBalance(int acctNum){
         BankAccount ba = accounts.get(acctNum);
@@ -30,17 +35,17 @@ public class Bank {
 
         return ba.hasEnoughCollateral(loanAmt);
     }
-    public void setForeign(int acctnum, boolean isForeign){
-        BankAccount ba = accounts.get(acctnum);
+    public void setForeign(int acctNum, boolean isForeign){
+        BankAccount ba = accounts.get(acctNum);
         ba.setForeign(isForeign);
     }
 
     public String toString(){
-        String result = "The bank has " + accounts.size() + " acounts.";
+        StringBuilder result = new StringBuilder("The bank has " + accounts.size() + " accounts.");
         for(BankAccount ba: accounts.values()){
-            result += "\n\t" + ba.toString();
+            result.append("\n\t").append(ba.toString());
         }
-        return result;
+        return result.toString();
     }
     public void addInterest(){
         for(BankAccount ba: accounts.values()){
