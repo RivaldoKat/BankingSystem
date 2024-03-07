@@ -9,4 +9,13 @@ public interface BankAccount extends Comparable<BankAccount>{
     boolean hasEnoughCollateral(int loanAmt);
     String toString();
     void addInterest();
+
+    static BankAccount createSavingsWithDeposit(int accNum, int n){
+        BankAccount ba = new SavingAccount(accNum);
+        ba.deposit(n);
+        return ba;
+    }
+    default boolean isEmpty(){
+        return getBalance() == 0;
+    }
 }
