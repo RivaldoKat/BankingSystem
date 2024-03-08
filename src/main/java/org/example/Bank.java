@@ -16,7 +16,7 @@ public class Bank {
         if (type == 1){
             ba = new SavingAccount(acctNum);
         }else if(type == 2){
-            ba = new CheckingAccount(acctNum);
+            ba = new RegularChecking(acctNum);
         }else {
             ba = new InterestChecking(acctNum);
         }
