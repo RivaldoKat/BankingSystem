@@ -11,7 +11,7 @@ public class CompareSavingsAccounts {
         System.out.println("Account with largest balance is: " + maxAcct1);
         System.out.println("Account with largest balance is: " + maxAcct2);
     }
-    private static ArrayList<SavingAccount> initAccts(){
+    public static ArrayList<SavingAccount> initAccts(){
         ArrayList<SavingAccount> accts = new ArrayList<>();
         accts.add(new SavingAccount(0));
         accts.get(0).deposit(100);

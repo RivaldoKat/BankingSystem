@@ -52,7 +52,20 @@ public abstract class AbstractBankAccount implements BankAccount{
         BankAccount ba = (BankAccount) obj;
         return getAccNum() == ba.getAccNum();
     }
-    public abstract boolean hasEnoughCollateral(int loanAmt);
-    public abstract String toString();
-    public abstract void addInterest();
+    public boolean hasEnoughCollateral(int loanAmt){
+        double ratio = collateralRatio();
+        return balance >= loanAmt * ratio;
+    }
+    protected abstract double collateralRatio();
+    public String toString() {
+        String accType = accountType();
+        return accType + " account " + accNum + " : balance = "
+                + balance + ", is "
+                + (isForeign ? "foreign" : "domestic");
+    }
+    public void addInterest(){
+        balance += (int) (balance * interestRate());
+    }
+    protected abstract String accountType();
+    protected abstract double interestRate();
 }

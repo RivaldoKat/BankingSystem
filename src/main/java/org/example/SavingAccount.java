@@ -5,15 +5,16 @@ public class SavingAccount extends AbstractBankAccount{
     public SavingAccount(int accNum){
         super(accNum);
     }
-    public boolean hasEnoughCollateral(int loanAmt){
-        return balance >= loanAmt / 2;
+    protected double collateralRatio() {
+        return 1.0 * 2.0;
     }
     public void addInterest() {
         balance += (int) (balance * rate);
     }
-    public String toString() {
-        return "Savings account " + accNum + " : balance = "
-                + balance + ", is "
-                + (isForeign ? "foreign" : "domestic");
+    public String accountType(){
+        return "Savings";
+    }
+    public double interestRate() {
+        return 0.01;
     }
 }
