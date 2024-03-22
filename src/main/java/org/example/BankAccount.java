@@ -9,7 +9,7 @@ public interface BankAccount extends Comparable<BankAccount>{
     boolean hasEnoughCollateral(int loanAmt);
     String toString();
     void addInterest();
-
+    int fee();
     static BankAccount createSavingsWithDeposit(int accNum, int n){
         BankAccount ba = new SavingAccount(accNum);
         ba.deposit(n);

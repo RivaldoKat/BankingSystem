@@ -3,7 +3,7 @@ package org.example;
 public abstract class AbstractBankAccount implements BankAccount{
     protected int accNum;
     protected int balance = 0;
-    protected boolean isForeign = false;
+    private OwnerStrategy owner = new Domestic();
 
     protected AbstractBankAccount(int accNum){
         this.accNum = accNum;
@@ -25,11 +25,11 @@ public abstract class AbstractBankAccount implements BankAccount{
     }
 
     public boolean isForeign() {
-        return isForeign;
+        return owner.isForeign();
     }
 
     public void setForeign(boolean foreign) {
-        isForeign = foreign;
+        owner = foreign ? new Foreign() : new Domestic();
     }
 
     public void deposit(int amt){
@@ -61,10 +61,13 @@ public abstract class AbstractBankAccount implements BankAccount{
         String accType = accountType();
         return accType + " account " + accNum + " : balance = "
                 + balance + ", is "
-                + (isForeign ? "foreign" : "domestic");
+                + owner.toString() + ", fee=" + fee();
     }
     public void addInterest(){
         balance += (int) (balance * interestRate());
+    }
+    public int fee(){
+       return owner.fee();
     }
     protected abstract String accountType();
     protected abstract double interestRate();
