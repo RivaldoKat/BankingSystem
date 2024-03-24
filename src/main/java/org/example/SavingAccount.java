@@ -1,19 +1,17 @@
 package org.example;
 
-public class SavingAccount extends AbstractBankAccount{
-    private double rate = 0.01;
-    public SavingAccount(int accNum){
-        super(accNum);
+public class SavingAccount implements TypeStrategy{
+    @Override
+    public double collateralRatio() {
+        return 1.0 / 2.0;
     }
-    protected double collateralRatio() {
-        return 1.0 * 2.0;
-    }
-    public void addInterest() {
-        balance += (int) (balance * rate);
-    }
-    public String accountType(){
+
+    @Override
+    public String accountType() {
         return "Savings";
     }
+
+    @Override
     public double interestRate() {
         return 0.01;
     }

@@ -12,14 +12,14 @@ public class Bank {
     }
     public int newAccount(int type, boolean isForeign){
         int acctNum = nextAcc++;
-        BankAccount ba;
-        if (type == 1){
-            ba = new SavingAccount(acctNum);
-        }else if(type == 2){
-            ba = new RegularChecking(acctNum);
-        }else {
-            ba = new InterestChecking(acctNum);
-        }
+        TypeStrategy ts;
+        if(type == 1 )
+            ts = new SavingAccount();
+        else if (type == 2)
+            ts = new SavingAccount();
+        else
+            ts = new SavingAccount();
+        BankAccount ba = new AbstractBankAccount(acctNum, ts);
         ba.setForeign(isForeign);
         accounts.put(acctNum, ba);
         return acctNum;

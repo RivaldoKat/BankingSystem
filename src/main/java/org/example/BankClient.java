@@ -11,71 +11,37 @@ public class BankClient {
         this.bank = bank;
     }
     public void run(){
-        scanner = new Scanner(System.in);
+        String userMessage = constructMessage();
         while(!done){
-            System.out.println("Enter command (0 = quit, 1 = new, " +
-                    "2 = select, 3 = deposit, 4 = loan, 5 = show, 6 = interest): ");
+            System.out.print(userMessage);
             int cmd = scanner.nextInt();
             processCommand(cmd);
         }
         scanner.close();
     }
-    public void processCommand(int cmd){
-        if(cmd == 0 ) quit();
-        else if(cmd == 1) newAccount();
-        else if(cmd == 2) select();
-        else if(cmd == 3) deposit();
-        else if(cmd == 4) authorizeLoan();
-        else if(cmd == 5) showAll();
-        else if(cmd == 6) addInterest();
-        else if(cmd == 7) setForeign();
-        else
-            System.out.println("Illegal command");
-    }
-    private void quit(){
-        done = true;
-        System.out.println("Goodbye!");
-    }
-    private void newAccount(){
-        System.out.println("Enter account type(1=savings, 2=checking, 3=interesting checking)");
-        boolean isForeign = requestForeign();
-        int type = scanner.nextInt();
-        current = bank.newAccount(type, isForeign);
-        System.out.println("Your new account is " + current);
-    }
-
-    private boolean requestForeign(){
-        System.out.println("Enter 1 for foreign, 2 for domestic: ");
-        int val = scanner.nextInt();
-        return (val == 1);
-    }
-    private void setForeign(){
-        bank.setForeign(current, requestForeign());
-    }
-    private void select(){
-        System.out.print("Enter account#: ");
-        current = scanner.nextInt();
-        int balance = bank.getBalance(current);
-        System.out.println("The balance of account " + current + " is " + balance);
-    }
-    private void deposit(){
-        System.out.print("Enter deposit amount: ");
-        int amt = scanner.nextInt();
-        bank.deposit(current, amt);
-    }
-    private void authorizeLoan(){
-        System.out.print("Enter loan amount: ");
-        int loanAmt = scanner.nextInt();
-        if(bank.authorizeLoan(current, loanAmt)){
-            System.out.println("Your loan is approved");
-        }else{
-            System.out.println("Your loan is denied");
+    private String constructMessage(){
+        int last = commands.length - 1;
+        StringBuilder result = new StringBuilder("Enter Account Type (");
+        for(int i =0; i < last; i++){
+            result.append(i).append("=").append(commands[i]).append(", ");
         }
+        result.append(last).append("=").append(commands[last]).append("):");
+        return result.toString();
     }
-    private void showAll(){
-            System.out.println(bank.toString());
+    private final InputCommand[] commands = {
+            new QuitCmd(),
+            new NewAccountCmd(),
+            new SelectCmd(),
+            new DepositCmd(),
+            new LoanCmd(),
+            new ShowCmd()
+    };
+    private void processCommand(int cnum){
+        InputCommand cmd = commands[cnum];
+        current = cmd.execute(scanner, bank, current);
+        if(current < 0)
+            done = true;
     }
-
     private void addInterest(){
         bank.addInterest();
     }

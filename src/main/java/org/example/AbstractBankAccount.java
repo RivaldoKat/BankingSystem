@@ -1,12 +1,14 @@
 package org.example;
 
-public abstract class AbstractBankAccount implements BankAccount{
+public class AbstractBankAccount implements BankAccount{
     protected int accNum;
     protected int balance = 0;
     private OwnerStrategy owner = new Domestic();
+    private TypeStrategy ts;
 
-    protected AbstractBankAccount(int accNum){
+    public AbstractBankAccount(int accNum, TypeStrategy ts){
         this.accNum = accNum;
+        this.ts = ts;
     }
     public int getAccNum() {
         return accNum;
@@ -56,7 +58,9 @@ public abstract class AbstractBankAccount implements BankAccount{
         double ratio = collateralRatio();
         return balance >= loanAmt * ratio;
     }
-    protected abstract double collateralRatio();
+    private double collateralRatio(){
+     return ts.collateralRatio();
+    }
     public String toString() {
         String accType = accountType();
         return accType + " account " + accNum + " : balance = "
@@ -69,6 +73,10 @@ public abstract class AbstractBankAccount implements BankAccount{
     public int fee(){
        return owner.fee();
     }
-    protected abstract String accountType();
-    protected abstract double interestRate();
+    private String accountType(){
+        return ts.accountType();
+    }
+    protected double interestRate(){
+        return ts.interestRate();
+    }
 }
