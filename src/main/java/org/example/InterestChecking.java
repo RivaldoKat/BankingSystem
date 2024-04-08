@@ -3,9 +3,18 @@ package org.example;
 public class InterestChecking extends CheckingAccount{
     private final double rate = 0.01;
 
-    public InterestChecking(int accNum){
-        super(accNum);
+    public InterestChecking(int accNum, TypeStrategy ts){
+        super(accNum, ts);
     }
+
+    protected String accountType() {
+        return "Interest checking";
+    }
+
+    protected double interestRate() {
+        return rate;
+    }
+
     public String toString(){
         return "Interest checking account " + getAccNum()
                 + ": balance = " + getBalance() + ", is"

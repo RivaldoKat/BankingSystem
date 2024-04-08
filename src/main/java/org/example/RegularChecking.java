@@ -1,8 +1,8 @@
 package org.example;
 
 public class RegularChecking extends CheckingAccount{
-    public RegularChecking(int accNum){
-        super(accNum);
+    public RegularChecking(int accNum, TypeStrategy ts){
+        super(accNum, ts);
     }
     protected String accountType() {
         return "Regular Checking";

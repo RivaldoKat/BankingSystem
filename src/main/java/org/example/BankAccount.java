@@ -11,7 +11,7 @@ public interface BankAccount extends Comparable<BankAccount>{
     void addInterest();
     int fee();
     static BankAccount createSavingsWithDeposit(int accNum, int n){
-        BankAccount ba = new SavingAccount(accNum);
+        BankAccount ba = (BankAccount) new SavingAccount();
         ba.deposit(n);
         return ba;
     }

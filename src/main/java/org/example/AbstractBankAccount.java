@@ -3,12 +3,13 @@ package org.example;
 public class AbstractBankAccount implements BankAccount{
     protected int accNum;
     protected int balance = 0;
-    private OwnerStrategy owner = new Domestic();
-    private TypeStrategy ts;
+    private OwnerStrategy owner = Owners.DOMESTIC;
+    private final TypeStrategy ts;
 
     public AbstractBankAccount(int accNum, TypeStrategy ts){
         this.accNum = accNum;
         this.ts = ts;
+
     }
     public int getAccNum() {
         return accNum;
@@ -31,7 +32,7 @@ public class AbstractBankAccount implements BankAccount{
     }
 
     public void setForeign(boolean foreign) {
-        owner = foreign ? new Foreign() : new Domestic();
+        owner = foreign ? Owners.FOREIGN : Owners.DOMESTIC;
     }
 
     public void deposit(int amt){

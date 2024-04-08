@@ -1,18 +1,14 @@
 package org.example;
 
-public class Domestic implements OwnerStrategy{
-    @Override
-    public boolean isForeign() {
-        return false;
+public enum Domestic implements OwnerStrategy{
+    INSTANCE;
+    public boolean isForeign(){
+        return true;
     }
-
-    @Override
-    public int fee() {
-        return 0;
+    public int fee(){
+        return 500;
     }
-
-    @Override
-    public String toString() {
-        return "Domestic";
+    public String toString(){
+        return "foreign";
     }
 }

@@ -19,7 +19,7 @@ public class Bank {
             ts = new SavingAccount();
         else
             ts = new SavingAccount();
-        BankAccount ba = new AbstractBankAccount(acctNum, ts);
+        BankAccount ba = new AbstractBankAccount(acctNum,ts);
         ba.setForeign(isForeign);
         accounts.put(acctNum, ba);
         return acctNum;

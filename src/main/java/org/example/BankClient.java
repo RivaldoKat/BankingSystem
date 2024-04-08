@@ -2,10 +2,11 @@ package org.example;
 
 import java.util.Scanner;
 public class BankClient {
-    private int current = -1;
-    private Scanner scanner;
+    private int current = 0;
+    private final Scanner scanner;
     private boolean done = false;
-    private Bank bank;
+    private final Bank bank;
+    private final InputCommand[] commands = InputCommands.values();
     public BankClient(Scanner scanner, Bank bank){
         this.scanner = scanner;
         this.bank = bank;
@@ -28,14 +29,7 @@ public class BankClient {
         result.append(last).append("=").append(commands[last]).append("):");
         return result.toString();
     }
-    private final InputCommand[] commands = {
-            new QuitCmd(),
-            new NewAccountCmd(),
-            new SelectCmd(),
-            new DepositCmd(),
-            new LoanCmd(),
-            new ShowCmd()
-    };
+
     private void processCommand(int cnum){
         InputCommand cmd = commands[cnum];
         current = cmd.execute(scanner, bank, current);

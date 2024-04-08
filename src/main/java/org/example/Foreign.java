@@ -1,6 +1,7 @@
 package org.example;
 
-public class Foreign implements OwnerStrategy{
+public enum Foreign implements OwnerStrategy{
+    INSTANCE;
     public boolean isForeign(){
         return true;
     }

@@ -2,8 +2,8 @@ package org.example;
 
 public abstract class CheckingAccount extends AbstractBankAccount{
     private final double rate = 0.01;
-    public CheckingAccount(int accNum) {
-        super(accNum);
+    public CheckingAccount(int accNum, TypeStrategy ts) {
+        super(accNum, ts);
     }
     public double collateralRatio() {
         return 2.0 / 3.0;
