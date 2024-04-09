@@ -75,9 +75,9 @@ public class SavedBankInfo {
         int balance = bb.getInt(8);
         int isForeign = bb.getInt(12);
         BankAccount ba;
-        TypeStrategy ts = new SavingAccount();
+        TypeStrategy ts = new SavingAccount(num);
         if (type == 1)
-            ts = new SavingAccount();
+            ts = new SavingAccount(num);
 
         else if (type == 2){
             ba = new RegularChecking(num, ts);

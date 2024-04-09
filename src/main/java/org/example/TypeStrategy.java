@@ -1,6 +1,6 @@
 package org.example;
 
-public interface TypeStrategy {
+public interface TypeStrategy extends BankAccount{
     double collateralRatio();
     String accountType();
     double interestRate();
