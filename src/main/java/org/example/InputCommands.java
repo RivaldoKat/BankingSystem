@@ -9,8 +9,7 @@ public enum InputCommands implements InputCommand{
         return -1;
     }),
     NEW("new", (sc, bank, current)->{
-        System.out.print("Enter account type(1=savings," +
-                "2=checking, 3=interest checking): ");
+       printMessage();
        int type = sc.nextInt();
        boolean isForeign = requestForeign(sc);
        current = bank.newAccount(type, isForeign);
@@ -69,5 +68,17 @@ public enum InputCommands implements InputCommand{
         System.out.println("Enter 1 for foreign, 2 for domestic: ");
         int val = sc.nextInt();
         return (val == 1);
+    }
+    private static String message;
+    static{
+        AccountFactory[] factories = AccountFactories.values();
+        message = "Enter Account Type (";
+        for(int i = 0; i < factories.length - 1; i++)
+            message += (i + 1) + "=" + factories[i] + ", ";
+        message += factories.length + "="
+                + factories[factories.length - 1] + ")";
+    }
+    private static void printMessage(){
+        System.out.print(message);
     }
 }

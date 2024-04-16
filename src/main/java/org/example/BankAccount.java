@@ -10,7 +10,12 @@ public interface BankAccount extends Comparable<BankAccount>{
     String toString();
     void addInterest();
     int fee();
-
+    static BankAccount createSavingsWithDeposit(int accNum, int n){
+        AccountFactory af = AccountFactories.SAVINGS;
+        BankAccount ba = af.create(accNum);
+        ba.deposit(n);
+        return ba;
+    }
     default boolean isEmpty(){
         return getBalance() == 0;
     }
