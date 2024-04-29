@@ -1,5 +1,9 @@
 package org.example;
 
+import org.example.bank.Bank;
+import org.example.commands.InputCommand;
+import org.example.commands.InputCommands;
+
 import java.util.Scanner;
 public class BankClient {
     private int current = 0;
