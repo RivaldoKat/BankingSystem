@@ -1,6 +1,6 @@
-package org.example.commands;
+package org.example.view;
 
-import org.example.bank.Bank;
+import org.example.model.Bank;
 
 import java.util.Scanner;
 

@@ -1,9 +1,9 @@
 package org.example.factories;
 
-import org.example.bank.BankAccount;
-import org.example.accounts.InterestChecking;
-import org.example.accounts.RegularChecking;
-import org.example.accounts.SavingAccount;
+import org.example.model.BankAccount;
+import org.example.model.InterestChecking;
+import org.example.model.RegularChecking;
+import org.example.model.SavingAccount;
 
 public enum AccountFactories implements AccountFactory{
     SAVINGS("Savings", SavingAccount::new),

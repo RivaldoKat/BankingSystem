@@ -1,7 +1,8 @@
 package org.example;
 
-import org.example.bank.Bank;
-import org.example.bank.BankAccount;
+import org.example.model.Bank;
+import org.example.model.BankAccount;
+import org.example.view.BankClient;
 
 import java.util.HashMap;
 import java.util.Map;

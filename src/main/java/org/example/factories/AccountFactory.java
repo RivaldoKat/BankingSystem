@@ -1,6 +1,6 @@
 package org.example.factories;
 
-import org.example.bank.BankAccount;
+import org.example.model.BankAccount;
 
 public interface AccountFactory {
     BankAccount create(int acctNum);

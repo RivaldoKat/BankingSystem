@@ -1,6 +1,6 @@
 package org.example.owner;
 
-import org.example.bank.BankAccount;
+import org.example.model.BankAccount;
 
 public interface TypeStrategy extends BankAccount {
     double collateralRatio();

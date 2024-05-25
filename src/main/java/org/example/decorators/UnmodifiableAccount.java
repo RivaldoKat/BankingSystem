@@ -1,6 +1,6 @@
 package org.example.decorators;
 
-import org.example.bank.BankAccount;
+import org.example.model.BankAccount;
 
 public class UnmodifiableAccount implements BankAccount {
     private final BankAccount ba;

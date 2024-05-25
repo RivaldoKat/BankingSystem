@@ -1,4 +1,4 @@
-package org.example.accounts;
+package org.example.model;
 
 import org.example.owner.TypeStrategy;
 

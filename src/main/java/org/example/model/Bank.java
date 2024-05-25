@@ -1,4 +1,4 @@
-package org.example.bank;
+package org.example.model;
 
 import org.example.decorators.SuspiciousAccount;
 import org.example.decorators.UnmodifiableBankIterator;

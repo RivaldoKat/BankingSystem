@@ -1,8 +1,8 @@
 package org.example.factories;
 
-import org.example.bank.AbstractBankAccount;
-import org.example.bank.BankAccount;
-import org.example.accounts.SavingAccount;
+import org.example.model.AbstractBankAccount;
+import org.example.model.BankAccount;
+import org.example.model.SavingAccount;
 import org.example.owner.TypeStrategy;
 
 public class SavingsFactory implements AccountFactory {

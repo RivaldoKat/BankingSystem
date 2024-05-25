@@ -1,6 +1,6 @@
 package org.example.decorators;
 
-import org.example.bank.BankAccount;
+import org.example.model.BankAccount;
 
 import java.util.Date;
 

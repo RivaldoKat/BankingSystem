@@ -1,4 +1,4 @@
-package org.example.bank;
+package org.example.model;
 
 import org.example.factories.AccountFactories;
 import org.example.factories.AccountFactory;

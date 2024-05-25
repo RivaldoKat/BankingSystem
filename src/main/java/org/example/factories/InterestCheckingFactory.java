@@ -1,7 +1,7 @@
 package org.example.factories;
 
-import org.example.bank.BankAccount;
-import org.example.accounts.InterestChecking;
+import org.example.model.BankAccount;
+import org.example.model.InterestChecking;
 
 public class InterestCheckingFactory implements AccountFactory {
     public BankAccount create(int acctNum){

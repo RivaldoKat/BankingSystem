@@ -1,4 +1,4 @@
-package org.example.bank;
+package org.example.model;
 
 import org.example.owner.OwnerStrategy;
 import org.example.owner.Owners;

@@ -1,6 +1,6 @@
 package org.example;
 
-import org.example.bank.BankAccount;
+import org.example.model.BankAccount;
 
 import java.io.*;
 import java.util.HashMap;

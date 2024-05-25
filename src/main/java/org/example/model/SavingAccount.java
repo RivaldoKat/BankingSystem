@@ -1,6 +1,5 @@
-package org.example.accounts;
+package org.example.model;
 
-import org.example.bank.BankAccount;
 import org.example.owner.TypeStrategy;
 
 public class SavingAccount implements TypeStrategy {

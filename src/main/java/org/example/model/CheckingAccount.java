@@ -1,6 +1,5 @@
-package org.example.accounts;
+package org.example.model;
 
-import org.example.bank.AbstractBankAccount;
 import org.example.owner.TypeStrategy;
 
 public abstract class CheckingAccount extends AbstractBankAccount {
