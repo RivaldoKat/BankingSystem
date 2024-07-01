@@ -1,7 +1,6 @@
 package org.example;
 
-import org.example.model.Bank;
-import org.example.model.BankAccount;
+import org.example.model.*;
 import org.example.view.BankClient;
 
 import java.util.HashMap;
@@ -14,6 +13,12 @@ public class BankProgram {
         Map<Integer, BankAccount> accounts = info.getAccounts();
         int nextAcc = info.nextAccNum();
         Bank bank = new Bank((HashMap<Integer, BankAccount>) accounts, nextAcc);
+        BankObserver auditor = new Auditor(bank);
+        bank.addObserver(BankEvent.DEPOSIT,
+                (event, ba, amt) -> {
+                    if (amt > 10000000)
+                        bank.makeSuspicious(ba.getAccNum());
+                });
         Scanner scanner = new Scanner(System.in);
         BankClient client = new BankClient(scanner,bank);
         client.run();
